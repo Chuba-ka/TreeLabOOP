@@ -1,5 +1,7 @@
 #include <iostream>
-#include <vector>
+#include <string>
+
+#include "Array.h"
 #include "Figure.h"
 #include "Triangle.h"
 #include "Hexagon.h"
@@ -7,9 +9,8 @@
 
 int main()
 {
-    std::vector<Figure *> figures;
+    Array figures;
     std::string command;
-    double total_area = 0.0;
 
     while (true)
     {
@@ -42,43 +43,45 @@ int main()
             }
 
             std::cin >> *fig;
-            figures.push_back(fig);
-            std::cout << "Фигура добавлена\n";
+            try
+            {
+                figures.add(fig);
+                std::cout << "Фигура добавлена\n";
+            }
+            catch (const std::out_of_range &e)
+            {
+                std::cout << e.what() << "\n";
+                delete fig;
+            }
         }
         else if (command == "вывести")
         {
             for (size_t i = 0; i < figures.size(); ++i)
             {
                 std::cout << "Фигура " << i << ":\n";
-                std::cout << *figures[i];
-                auto center = figures[i]->geometricCenter();
+                std::cout << *figures.get(i);
+                auto center = figures.get(i)->geometricCenter();
                 std::cout << "Геометрический центр: (" << center.first << ", " << center.second << ")\n";
-                std::cout << "Площадь: " << double(*figures[i]) << "\n\n";
+                std::cout << "Площадь: " << double(*figures.get(i)) << "\n\n";
             }
         }
         else if (command == "общая_площадь")
         {
-            total_area = 0.0;
-            for (const auto &fig : figures)
-            {
-                total_area += double(*fig);
-            }
-            std::cout << "Общая площадь: " << total_area << "\n";
+            std::cout << "Общая площадь: " << figures.totalArea() << "\n";
         }
         else if (command == "удалить")
         {
             size_t index;
             std::cout << "Введите индекс для удаления: ";
             std::cin >> index;
-            if (index < figures.size())
+            try
             {
-                delete figures[index];
-                figures.erase(figures.begin() + index);
+                figures.remove(index);
                 std::cout << "Фигура удалена\n";
             }
-            else
+            catch (const std::out_of_range &e)
             {
-                std::cout << "Неверный индекс\n";
+                std::cout << e.what() << "\n";
             }
         }
         else if (command == "выход")
@@ -89,11 +92,6 @@ int main()
         {
             std::cout << "Неизвестная команда\n";
         }
-    }
-
-    for (auto &fig : figures)
-    {
-        delete fig;
     }
 
     return 0;

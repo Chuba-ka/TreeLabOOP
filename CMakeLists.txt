@@ -4,7 +4,6 @@ project(FiguresProject)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Установка политики CMP0135 для FetchContent
 cmake_policy(SET CMP0135 NEW)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -16,6 +15,7 @@ add_executable(Figures
     src/Triangle.cpp
     src/Hexagon.cpp
     src/Octagon.cpp
+    src/Array.cpp
 )
 
 # Настройка Google Test

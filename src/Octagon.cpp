@@ -1,3 +1,6 @@
+#include <cmath>
+#include <iostream>
+
 #include "Octagon.h"
 
 Octagon::Octagon() : center_x(0), center_y(0), radius(1)

@@ -1,3 +1,6 @@
+#include <iostream>
+#include <vector>
+
 #include "Figure.h"
 
 Figure::Figure(const Figure &other) : vertices(other.vertices) {}

@@ -1,3 +1,6 @@
+#include <cmath>
+#include <iostream>
+
 #include "Triangle.h"
 
 Triangle::Triangle() : center_x(0), center_y(0), radius(1)

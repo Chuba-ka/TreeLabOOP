@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <sstream>
+
 #include "Figure.h"
 #include "Triangle.h"
 #include "Hexagon.h"
