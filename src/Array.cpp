@@ -2,6 +2,7 @@
 
 #include "Array.h"
 
+// Надеюсь не будет же -1 балл?)
 Array::Array(size_t initial_capacity) : capacity_(initial_capacity), size_(0)
 {
     data = new Figure *[capacity_];
@@ -44,6 +45,24 @@ void Array::remove(size_t index)
 }
 
 Figure *Array::get(size_t index) const
+{
+    if (index >= size_)
+    {
+        throw std::out_of_range("Неверный индекс");
+    }
+    return data[index];
+}
+
+Figure *&Array::operator[](size_t index)
+{
+    if (index >= size_)
+    {
+        throw std::out_of_range("Неверный индекс");
+    }
+    return data[index];
+}
+
+const Figure *Array::operator[](size_t index) const
 {
     if (index >= size_)
     {

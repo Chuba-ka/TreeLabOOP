@@ -46,7 +46,7 @@ int main()
             try
             {
                 figures.add(fig);
-                std::cout << "Фигура добавлена\n";
+                std::cout << "Фигура добавена\n";
             }
             catch (const std::out_of_range &e)
             {
@@ -59,10 +59,10 @@ int main()
             for (size_t i = 0; i < figures.size(); ++i)
             {
                 std::cout << "Фигура " << i << ":\n";
-                std::cout << *figures.get(i);
-                auto center = figures.get(i)->geometricCenter();
+                std::cout << *figures[i];
+                auto center = figures[i]->geometricCenter();
                 std::cout << "Геометрический центр: (" << center.first << ", " << center.second << ")\n";
-                std::cout << "Площадь: " << double(*figures.get(i)) << "\n\n";
+                std::cout << "Площадь: " << double(*figures[i]) << "\n\n";
             }
         }
         else if (command == "общая_площадь")

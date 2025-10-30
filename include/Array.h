@@ -11,6 +11,10 @@ public:
     void add(Figure *figure);
     void remove(size_t index);
     Figure *get(size_t index) const;
+
+    Figure *&operator[](size_t index);
+    const Figure *operator[](size_t index) const;
+
     size_t size() const;
     double totalArea() const;
 
